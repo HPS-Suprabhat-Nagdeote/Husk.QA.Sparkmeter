@@ -1,0 +1,2607 @@
+{
+	"info": {
+		"_postman_id": "30b88d0b-08fe-4a90-9b4f-e3e24522df24",
+		"name": "Sparkmeter V2-test1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "customerInfo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5ade4de0-ce8c-4b6a-902c-1cf461749f57",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "3bb03b2f-f4f7-402f-aaa9-dbd068d84564",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					}
+				],
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/customerInfo?customerId={{customerId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"customerInfo"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "{{customerId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createCustomer",
+			"id": "4eebc937-10c8-4e2f-aa81-1dbe2bc5a196",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Test_Kulbhushan1\",\r\n  \"code\": \"\",\r\n  \"phone_number\": \"9823643381\",\r\n  \"address\": \"Bihar\",\r\n  \"coordinates\": {\r\n    \"latitude\": \"string\",\r\n    \"longitude\": \"string\"\r\n  },\r\n  \"service_area_id\": \"string\",\r\n  \"meter_id\": \"f29c0f1a-4f0e-47cd-b13a-0450cf79727a\",\r\n  \"tariff_id\": \"88d5d649-3fe6-4f52-a023-2867be6766e0\",\r\n  \"operating_mode\": \"auto\",\r\n  \"meter_phase\": \"1\",\r\n  \"pole_id\": \"124\"\r\n}"
+				},
+				"url": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/createCustomer"
+			},
+			"response": []
+		},
+		{
+			"name": "getCustomers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f12a03a9-98b6-4a93-95aa-bc6aeadf53b5",
+						"exec": [
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Response time is less than 250ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(250);\r",
+							"});\r",
+							"pm.test(\"Get the customer ID value\", function () {\r",
+							"    var jsondata = pm.response.json();\r",
+							"    console.log(jsondata.data.id);\r",
+							"    pm.collectionVariables.set(\"id\", jsondata.data.id);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "fba8a9a0-e238-4757-8a37-8deafe616ee5",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					}
+				],
+				"url": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/getCustomers"
+			},
+			"response": []
+		},
+		{
+			"name": "updateCustomer",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bf02caef-d520-4508-b048-90a37ec47b82",
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "542d5e56-a67e-4865-b8bb-23afc7a63d87",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Rashmi_Test_test1\",\r\n  \"code\": \"\",\r\n  \"phone_number\": \"+2349863928013\",\r\n  \"address\": \"Patna\",\r\n  \"coordinates\": {\r\n    \"latitude\": \"\",\r\n    \"longitude\": \"\"\r\n  },\r\n  \"service_area_id\": \"dcbf905d-d34a-4e3d-8cf4-0a25b1c91397\",\r\n  \"meter_id\": \"60a1d8b1-5f84-401e-b940-79d2e7377e3d\",\r\n  \"tariff_id\": \"ec224988-65db-4686-a8f7-af1fcd694ee9\",\r\n  \"operating_mode\": \"auto\",\r\n  \"meter_phase\": \"1\",\r\n  \"pole_id\": \"321\"\r\n}"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/updateCustomer?customerId={{customerId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"updateCustomer"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "{{customerId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateCustomer-OnlyPhoneNumberChange",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bf02caef-d520-4508-b048-90a37ec47b82",
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "fb35ff5f-0f44-4b35-9fa5-a3fbd1ca2e54",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Rashmi_Test_test1\",\r\n  \"code\": \"\",\r\n  \"phone_number\": \"+2349863928014\",\r\n  \"address\": \"Patna\",\r\n  \"coordinates\": {\r\n    \"latitude\": \"\",\r\n    \"longitude\": \"\"\r\n  },\r\n  \"service_area_id\": \"dcbf905d-d34a-4e3d-8cf4-0a25b1c91397\",\r\n  \"meter_id\": \"60a1d8b1-5f84-401e-b940-79d2e7377e3d\",\r\n  \"tariff_id\": \"ec224988-65db-4686-a8f7-af1fcd694ee9\",\r\n  \"operating_mode\": \"auto\",\r\n  \"meter_phase\": \"1\",\r\n  \"pole_id\": \"321\"\r\n}"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/updateCustomer?customerId={{customerId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"updateCustomer"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "{{customerId}}"
+						}
+					]
+				},
+				"description": "By changing only phone number and other details are same."
+			},
+			"response": []
+		},
+		{
+			"name": "updateCustomer-OnlyNameChange",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bf02caef-d520-4508-b048-90a37ec47b82",
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "0a9340d7-33e8-4216-aa63-070f6ae03f1b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Rashmi_Test_test2\",\r\n  \"code\": \"\",\r\n  \"phone_number\": \"+2349863928014\",\r\n  \"address\": \"Patna\",\r\n  \"coordinates\": {\r\n    \"latitude\": \"\",\r\n    \"longitude\": \"\"\r\n  },\r\n  \"service_area_id\": \"dcbf905d-d34a-4e3d-8cf4-0a25b1c91397\",\r\n  \"meter_id\": \"60a1d8b1-5f84-401e-b940-79d2e7377e3d\",\r\n  \"tariff_id\": \"ec224988-65db-4686-a8f7-af1fcd694ee9\",\r\n  \"operating_mode\": \"auto\",\r\n  \"meter_phase\": \"1\",\r\n  \"pole_id\": \"321\"\r\n}"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/updateCustomer?customerId={{customerId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"updateCustomer"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "{{customerId}}"
+						}
+					]
+				},
+				"description": "Only name change for this API"
+			},
+			"response": []
+		},
+		{
+			"name": "updateCustomer-OnlyNameChange",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bf02caef-d520-4508-b048-90a37ec47b82",
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "cd162f1a-8453-4de5-a0de-165b897f70ff",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Rashmi_Test_test2\",\r\n  \"code\": \"\",\r\n  \"phone_number\": \"+2349863928014\",\r\n  \"address\": \"Patna1\",\r\n  \"coordinates\": {\r\n    \"latitude\": \"\",\r\n    \"longitude\": \"\"\r\n  },\r\n  \"service_area_id\": \"dcbf905d-d34a-4e3d-8cf4-0a25b1c91397\",\r\n  \"meter_id\": \"60a1d8b1-5f84-401e-b940-79d2e7377e3d\",\r\n  \"tariff_id\": \"ec224988-65db-4686-a8f7-af1fcd694ee9\",\r\n  \"operating_mode\": \"auto\",\r\n  \"meter_phase\": \"1\",\r\n  \"pole_id\": \"321\"\r\n}"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/updateCustomer?customerId={{customerId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"updateCustomer"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "{{customerId}}"
+						}
+					]
+				},
+				"description": "Update the details by changing the name of the customer."
+			},
+			"response": []
+		},
+		{
+			"name": "updateCustomer-nullserviceID",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bf02caef-d520-4508-b048-90a37ec47b82",
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "9660c37a-6ef3-40a3-8709-d96af65b9fbc",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Rashmi_Test_test2\",\r\n  \"code\": \"\",\r\n  \"phone_number\": \"+2349863928014\",\r\n  \"address\": \"Patna1\",\r\n  \"coordinates\": {\r\n    \"latitude\": \"\",\r\n    \"longitude\": \"\"\r\n  },\r\n  \"service_area_id\": \"\",\r\n  \"meter_id\": \"60a1d8b1-5f84-401e-b940-79d2e7377e3d\",\r\n  \"tariff_id\": \"ec224988-65db-4686-a8f7-af1fcd694ee9\",\r\n  \"operating_mode\": \"auto\",\r\n  \"meter_phase\": \"1\",\r\n  \"pole_id\": \"321\"\r\n}"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/updateCustomer?customerId={{customerId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"updateCustomer"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "{{customerId}}"
+						}
+					]
+				},
+				"description": "Sending service ID as null"
+			},
+			"response": []
+		},
+		{
+			"name": "updateCustomer-nullMeterID",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bf02caef-d520-4508-b048-90a37ec47b82",
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "afa95f05-9d04-4cc8-b405-03c674bfb6b8",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Rashmi_Test_test2\",\r\n  \"code\": \"\",\r\n  \"phone_number\": \"+2349863928014\",\r\n  \"address\": \"Patna1\",\r\n  \"coordinates\": {\r\n    \"latitude\": \"\",\r\n    \"longitude\": \"\"\r\n  },\r\n  \"service_area_id\": \"\",\r\n  \"meter_id\": \"\",\r\n  \"tariff_id\": \"ec224988-65db-4686-a8f7-af1fcd694ee9\",\r\n  \"operating_mode\": \"auto\",\r\n  \"meter_phase\": \"1\",\r\n  \"pole_id\": \"321\"\r\n}"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/updateCustomer?customerId={{customerId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"updateCustomer"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "{{customerId}}"
+						}
+					]
+				},
+				"description": "Provide the null meter ID"
+			},
+			"response": []
+		},
+		{
+			"name": "updateCustomer-nullTariffID",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bf02caef-d520-4508-b048-90a37ec47b82",
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "94eeabf0-e204-46aa-ae91-89dbdd7a904b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "1e85a123-fa12-4071-89f0-35df897e7b44",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Rashmi_Test_test2\",\r\n  \"code\": \"\",\r\n  \"phone_number\": \"+2349863928014\",\r\n  \"address\": \"Patna1\",\r\n  \"coordinates\": {\r\n    \"latitude\": \"\",\r\n    \"longitude\": \"\"\r\n  },\r\n  \"service_area_id\": \"\",\r\n  \"meter_id\": \"\",\r\n  \"tariff_id\": \"\",\r\n  \"operating_mode\": \"auto\",\r\n  \"meter_phase\": \"1\",\r\n  \"pole_id\": \"321\"\r\n}"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/updateCustomer?customerId={{customerId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"updateCustomer"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "{{customerId}}"
+						}
+					]
+				},
+				"description": "By providing the Null tariff, MeterId"
+			},
+			"response": []
+		},
+		{
+			"name": "createTariff",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2bd7fa3c-0aca-45d3-9c71-7e08d54d30c5",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 250ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(250);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "9d1b6b7f-17d2-4429-9121-da9ac514f3f5",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Test_Kulbhushan\",\r\n  \"electricity_rate\": \"100\",\r\n  \"load_limit\": {\r\n    \"type\": \"flat\",\r\n    \"value\": \"50\"\r\n  },\r\n  \"low_balance_threshold\": 5,\r\n  \"time_of_use\": [\r\n    {\r\n      \"start_time\": \"\",\r\n      \"modifier\": \"\"\r\n    }\r\n  ],\r\n  \"inrush_current_protection_disabled\": false,\r\n  \"block_rate\": {\r\n    \"period_kind\": \"\",\r\n    \"period_start\": 1,\r\n    \"reset_period\": \"1\",\r\n    \"rates\": [\r\n      {\r\n        \"start_energy\": 0,\r\n        \"rate\": \"\"\r\n      }\r\n    ],\r\n    \"units\": {\r\n      \"numerator\": \"\",\r\n      \"denominator\": \"\"\r\n    }\r\n  },\r\n  \"electricity_rate_type\": \"\",\r\n  \"block_rate_cycle_reset_energy\": \"\",\r\n  \"last_block_rate_cycle_reset_at\": \"\",\r\n  \"plan\": {\r\n    \"start_day\": 1,\r\n    \"fixed_fee\": \"3.00\",\r\n    \"minimum_spend\": \"0.00\"\r\n  }\r\n}"
+				},
+				"url": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/createTariff"
+			},
+			"response": []
+		},
+		{
+			"name": "createTariff Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2bd7fa3c-0aca-45d3-9c71-7e08d54d30c5",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 250ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(250);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "dafa137a-658d-41e8-8120-2cba32bbf680",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Test_Kulbhushan\",\r\n  \"electricity_rate\": \"100\",\r\n  \"load_limit\": {\r\n    \"type\": \"flat\",\r\n    \"value\": \"50\"\r\n  },\r\n  \"low_balance_threshold\": 5,\r\n  \"time_of_use\": [\r\n    {\r\n      \"start_time\": \"\",\r\n      \"modifier\": \"\"\r\n    }\r\n  ],\r\n  \"inrush_current_protection_disabled\": false,\r\n  \"block_rate\": {\r\n    \"period_kind\": \"\",\r\n    \"period_start\": 1,\r\n    \"reset_period\": \"1\",\r\n    \"rates\": [\r\n      {\r\n        \"start_energy\": 0,\r\n        \"rate\": \"\"\r\n      }\r\n    ],\r\n    \"units\": {\r\n      \"numerator\": \"\",\r\n      \"denominator\": \"\"\r\n    }\r\n  },\r\n  \"electricity_rate_type\": \"\",\r\n  \"block_rate_cycle_reset_energy\": \"\",\r\n  \"last_block_rate_cycle_reset_at\": \"\",\r\n  \"plan\": {\r\n    \"start_day\": 1,\r\n    \"fixed_fee\": \"3.00\",\r\n    \"minimum_spend\": \"0.00\"\r\n  }\r\n}"
+				},
+				"url": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/createTariff"
+			},
+			"response": []
+		},
+		{
+			"name": "getTariffs-For static per page value",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bba3fc81-3396-4211-bce8-31490b9ac6fb",
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Response body value as Id\", function () {\r",
+							"    var jsonData = pm.response.json().data[0].id;\r",
+							"    console.log(jsonData)\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "4a42082e-c2db-4462-ac15-b615b2bb803a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					}
+				],
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/getTariffs?per_page=1",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"getTariffs"
+					],
+					"query": [
+						{
+							"key": "per_page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTariffs-for dynamic per_page",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bba3fc81-3396-4211-bce8-31490b9ac6fb",
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Response body value as Id\", function () {\r",
+							"    var jsonData = pm.response.json().data[0].id;\r",
+							"    console.log(jsonData)\r",
+							"});\r",
+							"pm.test(\"Get the Tariff Id from the response\", function () {\r",
+							"    var jsonData = pm.response.json().data[0].id;\r",
+							"    pm.globals.set(\"Tariff_Id_New\",jsonData)\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0478c2dd-7974-4c0b-9ba7-84d5f3db2643",
+						"exec": [
+							"function randInt(min, max) {\r",
+							"   return Math.round((Math.random() * Math.abs(max - min)) + min);\r",
+							"\r",
+							"}\r",
+							"console.log(\"Random_integer: \" + randInt(1, 10));\r",
+							"pm.collectionVariables.set(\"perPageValue\" , randInt(1, 10))\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "6502944c-228a-4def-99db-99d619588aae",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					}
+				],
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/getTariffs?per_page={{perPageValue}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"getTariffs"
+					],
+					"query": [
+						{
+							"key": "per_page",
+							"value": "{{perPageValue}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTariffs-with no query parameter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bba3fc81-3396-4211-bce8-31490b9ac6fb",
+						"exec": [
+							"pm.test(\"Response time is less than 1000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Data with no query parameters should provide the null value..\", function () {\r",
+							"    var jsonData = pm.response.json().data;\r",
+							"    pm.expect(jsonData).to.eql(null);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "bcec921a-2175-4552-9a0b-2fd8c3139eb5",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					}
+				],
+				"url": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/getTariffs"
+			},
+			"response": []
+		},
+		{
+			"name": "SparkmeterV2/updateTariff- With New changes-without made changes in Swagger",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "af93cdd9-b6f6-470f-932e-bfb3ab45c274",
+						"exec": [
+							"function randInt(min, max) {\r",
+							"   return Math.round((Math.random() * Math.abs(max - min)) + min);\r",
+							"\r",
+							"}\r",
+							"console.log(\"Random_integer: \" + randInt(1, 10));\r",
+							"pm.collectionVariables.set(\"Tariff_Name\" ,\"PLAN\"+\" \"+ randInt(100, 999));\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "68376e01-e5bf-494e-82b6-36a2a03b0bf9",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{Tariff_Name}}\",\r\n    \"electricity_rate\": 150.0,\r\n    \"load_limit\": {\r\n        \"type\": \"flat\",\r\n        \"value\": 100.0\r\n    },\r\n    \"low_balance_threshold\": 120.0,\r\n    \"time_of_use\": [\r\n        {\r\n            \"start_time\": \"08:00\",\r\n            \"modifier\": 100.0\r\n        },\r\n        {\r\n            \"start_time\": \"10:00\",\r\n            \"modifier\": 80.0\r\n        },\r\n        {\r\n            \"start_time\": \"15:00\",\r\n            \"modifier\": 100.0\r\n        },\r\n        {\r\n            \"start_time\": \"17:00\",\r\n            \"modifier\": 115.0\r\n        },\r\n        {\r\n            \"start_time\": \"22:00\",\r\n            \"modifier\": 133.0\r\n        }\r\n    ],\r\n    \"inrush_current_protection_disabled\": false,\r\n    \"block_rate\": null,\r\n    \"electricity_rate_type\": \"flat_rate\",\r\n    \"block_rate_cycle_reset_energy\": null,\r\n    \"last_block_rate_cycle_reset_at\": null,\r\n    \"plan\": {\r\n        \"start_day\": 1,\r\n        \"fixed_fee\": 0.0,\r\n        \"minimum_spend\": 220.0\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/updateTariff?tariffId={{Tariff_Id_New}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"updateTariff"
+					],
+					"query": [
+						{
+							"key": "tariffId",
+							"value": "{{Tariff_Id_New}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateTariff",
+			"id": "a93544c3-8a42-4f46-a8b6-05c577666f0d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"string\",\r\n  \"electricity_rate\": \"string\",\r\n  \"load_limit\": {\r\n    \"type\": \"string\",\r\n    \"value\": \"string\"\r\n  },\r\n  \"low_balance_threshold\": 0,\r\n  \"time_of_use\": [\r\n    {\r\n      \"start_time\": \"string\",\r\n      \"modifier\": \"string\"\r\n    }\r\n  ],\r\n  \"inrush_current_protection_disabled\": true,\r\n  \"block_rate\": {\r\n    \"period_kind\": \"string\",\r\n    \"period_start\": 0,\r\n    \"reset_period\": \"string\",\r\n    \"rates\": [\r\n      {\r\n        \"start_energy\": 0,\r\n        \"rate\": \"string\"\r\n      }\r\n    ],\r\n    \"units\": {\r\n      \"numerator\": \"string\",\r\n      \"denominator\": \"string\"\r\n    }\r\n  },\r\n  \"electricity_rate_type\": \"string\",\r\n  \"block_rate_cycle_reset_energy\": \"string\",\r\n  \"last_block_rate_cycle_reset_at\": \"string\",\r\n  \"plan\": {\r\n    \"start_day\": 0,\r\n    \"fixed_fee\": \"string\",\r\n    \"minimum_spend\": \"string\"\r\n  }\r\n}"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/updateTariff?tariffId={{tariffId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"updateTariff"
+					],
+					"query": [
+						{
+							"key": "tariffId",
+							"value": "{{tariffId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createPayment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "51448f15-6a56-4f35-a741-80a24a052843",
+						"exec": [
+							"pm.test('Status code is 200', function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"pm.test('Content-Type is present', function () {\r",
+							"    pm.response.to.have.header('Content-Type');\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Get the cutomer payment Id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    console.log(jsonData.data.id);\r",
+							"});\r",
+							"\r",
+							"// Stores the paymentId in a global variable\r",
+							"var paymentId = pm.response.json().data.id;\r",
+							"pm.globals.set(\"paymentId\", paymentId);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "cc493fe9-318d-4943-82d1-9ce44457192c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"amount\": \"10\",\r\n  \"memo\": \"bonus\"\r\n}"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/createPayment?customerId={{customerId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"createPayment"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "{{customerId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createPayment-NegativeTest1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ff584d2-ef52-465e-8716-91d8585cbdb5",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "3ac57a12-90f8-4c15-8ff4-41f32c275aed",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"amount\": \"0\",\r\n  \"memo\": \"bonus\"\r\n}"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/createPayment?customerId={{customerId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"createPayment"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "{{customerId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createPayment-NegativeTestNullValue2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ff584d2-ef52-465e-8716-91d8585cbdb5",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "6ace2f40-8e5e-4616-b7eb-0543c1e61702",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"amount\": \"\",\r\n  \"memo\": \"bonus\"\r\n}"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/createPayment?customerId={{customerId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"createPayment"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "{{customerId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createPayment-NegativeTest-3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "51448f15-6a56-4f35-a741-80a24a052843",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "e3dbd7b6-a166-43a4-b835-90c2d3fd4ad2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"amount\": \"100\",\r\n  \"memo\": \"\"\r\n}"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/createPayment?customerId={{customerId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"createPayment"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "{{customerId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "paymentInfo",
+			"id": "c9a7ed9b-c1d8-4dcf-b168-f9e7bd3c9e4b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					}
+				],
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/paymentInfo?paymentId={{paymentId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"paymentInfo"
+					],
+					"query": [
+						{
+							"key": "paymentId",
+							"value": "{{paymentId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reversePayment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "292a042e-0271-41f2-9128-adc7e8224331",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"// Stores the paymentId in a global variable",
+							"var reversePayment = pm.response.json().data.memo;",
+							"//pm.globals.set(\"paymentId\", paymentId);",
+							"console.log(\"Reverse payment message\" , reversePayment);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "86a0cb1a-9fbd-4e87-b97c-f43649d63df4",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/reversePayment?paymentId={{paymentId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"reversePayment"
+					],
+					"query": [
+						{
+							"key": "paymentId",
+							"value": "{{paymentId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateMeter",
+			"id": "17794a13-72ee-4af8-9cc3-38f2c99ea7fb",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"string\",\r\n  \"code\": \"string\",\r\n  \"phone_number\": \"string\",\r\n  \"address\": \"string\",\r\n  \"coordinates\": {\r\n    \"latitude\": \"string\",\r\n    \"longitude\": \"string\"\r\n  },\r\n  \"service_area_id\": \"string\",\r\n  \"meter_id\": \"string\",\r\n  \"tariff_id\": \"string\",\r\n  \"operating_mode\": \"string\",\r\n  \"meter_phase\": \"string\",\r\n  \"pole_id\": \"string\"\r\n}"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/updateMeter?customerId={{customerId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"updateMeter"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "{{customerId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateMeter-Negative test1",
+			"id": "1c69effd-571e-4d40-93d8-497fa1e92489",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"address\": \"Pole 12\",\r\n  \"operating_mode\": \"auto\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/updateMeter?customerId={{customerId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"updateMeter"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "{{customerId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateMeter-Negative test2",
+			"id": "4dc01ff0-ea31-45e9-9c89-dc5229022c98",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"address\": \"\",\r\n  \"operating_mode\": \"auto\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/updateMeter?customerId={{customerId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"updateMeter"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "{{customerId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateMeter-Negative test3",
+			"id": "53dfc74c-47fa-484b-a1a2-138c8a9f4471",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"address\": \"\",\r\n  \"operating_mode\": \"\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/updateMeter?customerId={{customerId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"updateMeter"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "{{customerId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateMeter-Negative test4",
+			"id": "dd683948-db73-4773-9782-0324c7e81178",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"address\": \"\",\r\n  \"operating_mode\": \"on\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/updateMeter?customerId={{customerId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"updateMeter"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "{{customerId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateMeter-Negative test5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5368f1a7-5893-4074-a51f-a0756cfb12e3",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "19827ede-fc02-416e-b3dc-ae3a54e61956",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"address\": \"Pole 13\",\r\n  \"operating_mode\": \"\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/updateMeter?customerId={{customerId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"updateMeter"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "{{customerId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "resetMeter",
+			"id": "cb8594f7-9186-41ea-a54b-acd9837408ee",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					}
+				],
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/resetMeter?customerId={{customerId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"resetMeter"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "{{customerId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateMeter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3b52b148-4dad-459d-9e25-d1e51e6db939",
+						"exec": [
+							"pm.test(\"Status code is 250\", function () {\r",
+							"    pm.response.to.have.status(250);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 250ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(250);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Validate Response data with customer Id \", function () {\r",
+							"    var jsonData = pm.response.json().data.id;\r",
+							"    console.log(jsonData)\r",
+							"    //pm.expect(jsonData).to.eql(\"{{customerId}}\");\r",
+							"\r",
+							"// pm.test(\"customerId value\", function () {\r",
+							"// var getCustomerId = pm.environment.get(\"customerId\")\r",
+							"// pm.expect(jsonData).to.eql(getCustomerId);\r",
+							"\r",
+							"console.log(pm.environment.get(\"customerId\"));\r",
+							"\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "1824285c-d52e-4045-a9d7-0d5f23d691dd",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					}
+				],
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/updateMeter?operation=replace&property=operating_mode&value=auto&customerId={{customerId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"updateMeter"
+					],
+					"query": [
+						{
+							"key": "operation",
+							"value": "replace"
+						},
+						{
+							"key": "property",
+							"value": "operating_mode"
+						},
+						{
+							"key": "value",
+							"value": "auto"
+						},
+						{
+							"key": "customerId",
+							"value": "{{customerId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateMeter-without customer Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b46f398f-0e50-404e-aa12-df3b83451842",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"Error message\", function () {\r",
+							"    var jsonData = pm.response.json().errors.customerId[0];\r",
+							"    console.log(jsonData)\r",
+							"});\r",
+							"pm.test(\"Validate status code through response body\", function () {\r",
+							"    var jsonData = pm.response.json().status;\r",
+							"    pm.expect(jsonData).to.eql(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "c73e78e4-dac6-441d-9fec-1a276c50ecba",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					}
+				],
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/updateMeter?operation=replace&property=operating_mode&value=auto",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"updateMeter"
+					],
+					"query": [
+						{
+							"key": "operation",
+							"value": "replace"
+						},
+						{
+							"key": "property",
+							"value": "operating_mode"
+						},
+						{
+							"key": "value",
+							"value": "auto"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateMeter-without value parameter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c5cb2a88-48e5-46dc-99ad-833890a8e639",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"Error message\", function () {\r",
+							"    var jsonData = pm.response.json().errors.value[0];\r",
+							"    console.log(jsonData)\r",
+							"});\r",
+							"pm.test(\"Validate status code through response body\", function () {\r",
+							"    var jsonData = pm.response.json().status;\r",
+							"    pm.expect(jsonData).to.eql(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "08bff38c-64a6-443a-93b6-f4ee4dd7c15c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					}
+				],
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/updateMeter?operation=replace&property=operating_mode&customerId={{customerId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"updateMeter"
+					],
+					"query": [
+						{
+							"key": "operation",
+							"value": "replace"
+						},
+						{
+							"key": "property",
+							"value": "operating_mode"
+						},
+						{
+							"key": "customerId",
+							"value": "{{customerId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateMeter-with no property field",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aef19c08-d28a-4a24-913e-1ee6ec6bf12c",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"Error message\", function () {\r",
+							"    var jsonData = pm.response.json().errors.property[0];\r",
+							"    console.log(jsonData)\r",
+							"});\r",
+							"pm.test(\"Validate status code through response body\", function () {\r",
+							"    var jsonData = pm.response.json().status;\r",
+							"    pm.expect(jsonData).to.eql(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "beb5f7a9-eaa7-4c04-83be-10e185cc3331",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					}
+				],
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/updateMeter?operation=replace&value=auto&customerId={{customerId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"updateMeter"
+					],
+					"query": [
+						{
+							"key": "operation",
+							"value": "replace"
+						},
+						{
+							"key": "value",
+							"value": "auto"
+						},
+						{
+							"key": "customerId",
+							"value": "{{customerId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateMeter-With no operation parameter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3570e10b-42af-4f18-8255-1c1c0f849ea3",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"Error message\", function () {\r",
+							"    var jsonData = pm.response.json().errors.operation[0];\r",
+							"    console.log(jsonData)\r",
+							"});\r",
+							"pm.test(\"Validate status code through response body\", function () {\r",
+							"    var jsonData = pm.response.json().status;\r",
+							"    pm.expect(jsonData).to.eql(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "c6035a90-dd4f-4116-bb1f-6ae0515f6963",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					}
+				],
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/updateMeter?property=operating_mode&value=auto&customerId={{customerId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"updateMeter"
+					],
+					"query": [
+						{
+							"key": "property",
+							"value": "operating_mode"
+						},
+						{
+							"key": "value",
+							"value": "auto"
+						},
+						{
+							"key": "customerId",
+							"value": "{{customerId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Historical Data1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "12556f9b-7341-4135-b186-c05ead13892f",
+						"exec": [
+							"pm.test('Status code is 200', function () {",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"",
+							"pm.test('Content-Type is present', function () {",
+							"    pm.response.to.have.header('Content-Type');",
+							"})",
+							"",
+							"pm.test('Response time is less than 250ms', function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(250);",
+							"})",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json().results[0].site;",
+							"    //pm.expect(jsonData).to.eql('{{sites1}}');",
+							"    console.log(jsonData)",
+							"});",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json().freshness;",
+							"   // pm.expect(jsonData).to.eql('{{organizationId}}');",
+							"    console.log(jsonData)",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "982e0707-7d4b-4e92-ae4b-bf5da6b9935c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cursor\": \"\",\r\n  \"per_page\": 1,\r\n  \"filters\": {\r\n    \"sites\": [\r\n      \"{{sites1}}\"\r\n    ],\r\n    \"entity_types\": [\r\n      \"readings\"\r\n    ]\r\n  }\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/historicalData?organizationId={{organizationId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"historicalData"
+					],
+					"query": [
+						{
+							"key": "organizationId",
+							"value": "{{organizationId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Historical Data1-with no organization Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "12556f9b-7341-4135-b186-c05ead13892f",
+						"exec": [
+							"pm.test('Status code is 400', function () {",
+							"    pm.response.to.have.status(400);",
+							"})",
+							"",
+							"pm.test('Content-Type is present', function () {",
+							"    pm.response.to.have.header('Content-Type');",
+							"})",
+							"",
+							"pm.test('Response time is less than 250ms', function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(250);",
+							"})",
+							"",
+							"pm.test(\"error message\", function () {",
+							"    var jsonData = pm.response.json().errors.organizationId;",
+							"    console.log(jsonData);",
+							"    //pm.expect(jsonData[0]).to.eql('The organizationId field is required');",
+							"});",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "9b1571e5-b725-44e4-8a14-d8a34581847e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cursor\": \"\",\r\n  \"per_page\": 1,\r\n  \"filters\": {\r\n    \"sites\": [\r\n      \"{{sites1}}\"\r\n    ],\r\n    \"entity_types\": [\r\n      \"readings\"\r\n    ]\r\n  }\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/historicalData?organizationId=",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"historicalData"
+					],
+					"query": [
+						{
+							"key": "organizationId",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Historical Data1-withouth response body",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "12556f9b-7341-4135-b186-c05ead13892f",
+						"exec": [
+							"pm.test('Status code is 400', function () {",
+							"    pm.response.to.have.status(400);",
+							"})",
+							"",
+							"pm.test('Content-Type is present', function () {",
+							"    pm.response.to.have.header('Content-Type');",
+							"})",
+							"",
+							"",
+							"// pm.test(\"Your test name\", function () {",
+							"//     var jsonData = pm.response.json().results[0].site;",
+							"//     //pm.expect(jsonData).to.eql('{{sites1}}');",
+							"//     console.log(jsonData)",
+							"// });",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json().errors.cursor[0];",
+							"   // pm.expect(jsonData).to.eql('{{organizationId}}');",
+							"    console.log(jsonData)",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "7ebfea49-a144-4f03-ae85-41a594d9b1f0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/historicalData?organizationId={{organizationId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"historicalData"
+					],
+					"query": [
+						{
+							"key": "organizationId",
+							"value": "{{organizationId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Historical Data1-no site data ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "12556f9b-7341-4135-b186-c05ead13892f",
+						"exec": [
+							"pm.test('Status code is 204', function () {",
+							"    pm.response.to.have.status(204);",
+							"})",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "3a56c001-2251-4865-8660-45e7de06ccf4",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cursor\": \"\",\r\n  \"per_page\": 1,\r\n  \"filters\": {\r\n    \"sites\": [\r\n      \"\"\r\n    ],\r\n    \"entity_types\": [\r\n      \"readings\"\r\n    ]\r\n  }\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/historicalData?organizationId={{organizationId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"historicalData"
+					],
+					"query": [
+						{
+							"key": "organizationId",
+							"value": "{{organizationId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "liveData",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "80f5da3c-a24d-4672-8a61-fa20be5bdea3",
+						"exec": [
+							"pm.test('Status code is 200', function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"pm.test('Content-Type is present', function () {\r",
+							"    pm.response.to.have.header('Content-Type');\r",
+							"})\r",
+							"\r",
+							"pm.test('Response time is less than 250ms', function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(250);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json().results[0].site;\r",
+							"    //pm.expect(jsonData).to.eql('{{sites1}}');\r",
+							"    console.log(jsonData)\r",
+							"});\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json().freshness;\r",
+							"   // pm.expect(jsonData).to.eql('{{organizationId}}');\r",
+							"    console.log(jsonData)\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "1479b73f-f4ed-45a2-b408-6ac765054937",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cursor\": \"\",\r\n  \"per_page\": 1,\r\n  \"filters\": {\r\n    \"sites\": [\r\n      \"{{sites1}}\"\r\n    ],\r\n    \"entity_types\": [\r\n      \"readings\"\r\n    ]\r\n  }\r\n}"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/liveData?organizationId={{organizationId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"liveData"
+					],
+					"query": [
+						{
+							"key": "organizationId",
+							"value": "{{organizationId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "liveData-no organization Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "80f5da3c-a24d-4672-8a61-fa20be5bdea3",
+						"exec": [
+							"pm.test('Status code is 400', function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"})\r",
+							"\r",
+							"pm.test('Content-Type is present', function () {\r",
+							"    pm.response.to.have.header('Content-Type');\r",
+							"})\r",
+							"\r",
+							"\r",
+							"pm.test(\"error message\", function () {\r",
+							"    var jsonData = pm.response.json().errors.organizationId;\r",
+							"    console.log(jsonData);\r",
+							"    //pm.expect(jsonData[0]).to.eql('The organizationId field is required');\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "4964d2a6-b2ef-4d74-b6be-a1a6e7816c1c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cursor\": \"\",\r\n  \"per_page\": 1,\r\n  \"filters\": {\r\n    \"sites\": [\r\n      \"{{sites1}}\"\r\n    ],\r\n    \"entity_types\": [\r\n      \"readings\"\r\n    ]\r\n  }\r\n}"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/liveData?organizationId=",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"liveData"
+					],
+					"query": [
+						{
+							"key": "organizationId",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "liveData- no response body",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "80f5da3c-a24d-4672-8a61-fa20be5bdea3",
+						"exec": [
+							"pm.test('Status code is 400', function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"})\r",
+							"\r",
+							"pm.test('Content-Type is present', function () {\r",
+							"    pm.response.to.have.header('Content-Type');\r",
+							"})\r",
+							"\r",
+							"\r",
+							"// pm.test(\"Your test name\", function () {\r",
+							"//     var jsonData = pm.response.json().results[0].site;\r",
+							"//     //pm.expect(jsonData).to.eql('{{sites1}}');\r",
+							"//     console.log(jsonData)\r",
+							"// });\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json().errors.cursor[0];\r",
+							"   // pm.expect(jsonData).to.eql('{{organizationId}}');\r",
+							"    console.log(jsonData)\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "d5531ef0-894e-498a-9c80-0a609bbea3a0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \r\n}"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/liveData?organizationId={{organizationId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"liveData"
+					],
+					"query": [
+						{
+							"key": "organizationId",
+							"value": "{{organizationId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "liveData-no site data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "80f5da3c-a24d-4672-8a61-fa20be5bdea3",
+						"exec": [
+							"pm.test('Status code is 204', function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "73d0cad1-6b2f-4c6f-b02b-c59f8937d747",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cursor\": \"\",\r\n  \"per_page\": 1,\r\n  \"filters\": {\r\n    \"sites\": [\r\n      \"\"\r\n    ],\r\n    \"entity_types\": [\r\n      \"readings\"\r\n    ]\r\n  }\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://husk3pawrappers-dev.azurewebsites.net/api/SparkmeterV2/liveData?organizationId={{organizationId}}",
+					"protocol": "https",
+					"host": [
+						"husk3pawrappers-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"SparkmeterV2",
+						"liveData"
+					],
+					"query": [
+						{
+							"key": "organizationId",
+							"value": "{{organizationId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "customerId",
+			"value": "bd42df53-620b-4f05-9eb4-1e38505b9ff4"
+		},
+		{
+			"key": "id",
+			"value": ""
+		},
+		{
+			"key": "perPageValue",
+			"value": ""
+		},
+		{
+			"key": "Tariff_Name",
+			"value": ""
+		}
+	]
+}
